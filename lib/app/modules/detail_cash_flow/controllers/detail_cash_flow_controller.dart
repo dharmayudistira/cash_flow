@@ -1,23 +1,25 @@
+import '../../../data/local_storage/auth_pref.dart';
+import '../../../data/local_storage/db_helper.dart';
+import '../../../data/models/transaction_model.dart';
 import 'package:get/get.dart';
 
 class DetailCashFlowController extends GetxController {
-  //TODO: Implement DetailCashFlowController
+  final currentUser = AuthPref().getCurrentUser().obs;
+  final listTransaction = <TransactionModel>[].obs;
 
-  final count = 0.obs;
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    _getListTransaction();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  Future<void> refreshData() async {
+    await _getListTransaction();
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  Future<void> _getListTransaction() async {
+    final userId = currentUser.value!.id!;
+    listTransaction.value =
+        await CashFlowDatabase.instance.readAllTransaction(userId);
   }
-
-  void increment() => count.value++;
 }

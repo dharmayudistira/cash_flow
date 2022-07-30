@@ -1,5 +1,5 @@
-import 'package:cash_flow/app/data/constants/query_type_enums.dart';
-import 'package:cash_flow/app/routes/app_pages.dart';
+import '../../../data/constants/query_type_enums.dart';
+import '../../../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -144,16 +144,9 @@ class HomeView extends GetView<HomeController> {
                 "Add Income",
                 style: Theme.of(context).textTheme.subtitle1,
               ),
-              leading: Container(
-                height: 46,
-                width: 46,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: const Icon(
-                  Icons.camera,
-                ),
+              leading: const Icon(
+                Icons.trending_up,
+                size: 28,
               ),
               trailing: const Icon(Icons.chevron_right),
             ),
@@ -170,16 +163,9 @@ class HomeView extends GetView<HomeController> {
                 "Add Expanse",
                 style: Theme.of(context).textTheme.subtitle1,
               ),
-              leading: Container(
-                height: 46,
-                width: 46,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: const Icon(
-                  Icons.camera,
-                ),
+              leading: const Icon(
+                Icons.trending_down,
+                size: 28,
               ),
               trailing: const Icon(Icons.chevron_right),
             ),
@@ -196,16 +182,9 @@ class HomeView extends GetView<HomeController> {
                 "Detail Cashflow",
                 style: Theme.of(context).textTheme.subtitle1,
               ),
-              leading: Container(
-                height: 46,
-                width: 46,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: const Icon(
-                  Icons.camera,
-                ),
+              leading: const Icon(
+                Icons.assessment,
+                size: 28,
               ),
               trailing: const Icon(Icons.chevron_right),
             ),
@@ -222,22 +201,15 @@ class HomeView extends GetView<HomeController> {
                 "Setting",
                 style: Theme.of(context).textTheme.subtitle1,
               ),
-              leading: Container(
-                height: 46,
-                width: 46,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: const Icon(
-                  Icons.camera,
-                ),
+              leading: const Icon(
+                Icons.info_outline,
+                size: 28,
               ),
               trailing: const Icon(Icons.chevron_right),
             ),
             onTap: () {
-              // Get.toNamed(Routes.ADD_TRANSACTION, arguments: false)
-              //     ?.whenComplete(() => controller.refreshData());
+              Get.toNamed(Routes.SETTING, arguments: false)
+                  ?.whenComplete(() => controller.refreshData());
             },
           ),
         )

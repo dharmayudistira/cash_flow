@@ -1,4 +1,4 @@
-import 'package:cash_flow/app/views/views/loading_view.dart';
+import '../../../views/views/loading_view.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 
@@ -119,15 +119,12 @@ class AddTransactionView extends GetView<AddTransactionController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            FloatingActionButton.extended(
+            ElevatedButton(
               onPressed: () async {
-                controller.addTransaction();
+                await controller.addTransaction();
               },
-              label: Text(
-                (controller.isAddIncome)
-                    ? "Add Transaction"
-                    : "Add Transaction",
-                style: Theme.of(context).textTheme.subtitle1,
+              child: Text(
+                (controller.isAddIncome) ? "Add Income" : "Add Expanse",
               ),
             ),
           ],

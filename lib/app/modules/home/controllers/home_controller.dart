@@ -1,6 +1,6 @@
-import 'package:cash_flow/app/data/constants/query_type_enums.dart';
-import 'package:cash_flow/app/data/models/transaction_model.dart';
-import 'package:cash_flow/app/utils/currency_formatter.dart';
+import '../../../data/constants/query_type_enums.dart';
+import '../../../data/models/transaction_model.dart';
+import '../../../utils/currency_formatter.dart';
 
 import '../../../data/local_storage/auth_pref.dart';
 import '../../../data/local_storage/db_helper.dart';
