@@ -1,4 +1,4 @@
-import 'package:cash_flow/app/data/constants/db_field_constants.dart';
+import '../constants/db_field_constants.dart';
 
 class TransactionModel {
   final int? id;

@@ -1,3 +1,4 @@
+import '../../../views/views/loading_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -10,7 +11,13 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _buildBodyLogin(context),
+      body: Obx(() {
+        if (controller.isLoginLoading.value) {
+          return LoadingWidget(child: _buildBodyLogin(context));
+        } else {
+          return _buildBodyLogin(context);
+        }
+      }),
     );
   }
 
@@ -77,7 +84,7 @@ class LoginView extends GetView<LoginController> {
                       Icons.person,
                     ),
                   ),
-                  // controller: _usernameController,
+                  controller: controller.usernameController,
                 ),
                 const Divider(),
                 TextField(
@@ -91,7 +98,7 @@ class LoginView extends GetView<LoginController> {
                       Icons.lock,
                     ),
                   ),
-                  // controller: _passwordController,
+                  controller: controller.passwordController,
                 ),
               ],
             ),
@@ -107,7 +114,11 @@ class LoginView extends GetView<LoginController> {
             Padding(
               padding: const EdgeInsets.all(16),
               child: FloatingActionButton(
-                onPressed: () {},
+                onPressed: () async {
+                  final username = controller.usernameController.text;
+                  final password = controller.passwordController.text;
+                  controller.doLogin(username, password);
+                },
                 child: const Icon(Icons.arrow_forward),
               ),
             ),

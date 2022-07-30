@@ -1,7 +1,7 @@
-import 'package:cash_flow/app/data/constants/db_field_constants.dart';
-import 'package:cash_flow/app/data/constants/message_constants.dart';
-import 'package:cash_flow/app/data/models/transaction_model.dart';
-import 'package:cash_flow/app/data/models/user_model.dart';
+import '../constants/db_field_constants.dart';
+import '../constants/message_constants.dart';
+import '../models/transaction_model.dart';
+import '../models/user_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -32,7 +32,7 @@ CREATE TABLE $tableUser (
   ${UserFields.id} INTEGER PRIMARY KEY AUTOINCREMENT,
   ${UserFields.username} TEXT NOT NULL,
   ${UserFields.password} TEXT NOT NULL,
-  ${UserFields.name} TEXT NOT NULL,
+  ${UserFields.name} TEXT NOT NULL
 )
 ''');
 
@@ -43,7 +43,7 @@ CREATE TABLE $tableTransaction (
   ${TransactionFields.amount} INTEGER NOT NULL,
   ${TransactionFields.isIncome} BOOLEAN NOT NULL,
   ${TransactionFields.note} TEXT NOT NULL,
-  ${TransactionFields.createdTime} TEXT NOT NULL,
+  ${TransactionFields.createdTime} TEXT NOT NULL
 )
 ''');
 
