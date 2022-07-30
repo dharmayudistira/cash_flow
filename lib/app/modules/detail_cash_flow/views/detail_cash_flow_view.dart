@@ -10,14 +10,9 @@ class DetailCashFlowView extends GetView<DetailCashFlowController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('DetailCashFlowView'),
-        centerTitle: true,
+        centerTitle: false,
       ),
-      body: Center(
-        child: Text(
-          'DetailCashFlowView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: Container(),
     );
   }
 }

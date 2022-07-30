@@ -11,20 +11,13 @@ class AddTransactionView extends GetView<AddTransactionController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          (controller.isAddIncome) ? "Add Income" : "Add Expanse",
-          style: Theme.of(context).textTheme.headline3,
-        ),
-        centerTitle: false,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Obx(() {
           if (controller.isAddLoading.value) {
             return LoadingWidget(child: _buildBodyAddTransaction(context));
           } else {
-            return _buildBodyAddTransaction(context);
+            return SafeArea(child: _buildBodyAddTransaction(context));
           }
         }),
       ),
@@ -35,6 +28,27 @@ class AddTransactionView extends GetView<AddTransactionController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            InkWell(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              onTap: () {
+                Get.back();
+              },
+              child: const Icon(Icons.arrow_back_ios),
+            ),
+            const SizedBox(width: 16),
+            Text(
+              controller.isAddIncome
+                  ? "Add Income Transaction"
+                  : "Add Expanse Transaction",
+              style: Theme.of(context).textTheme.headline3,
+            ),
+          ],
+        ),
+        const SizedBox(height: 32),
         TextField(
           controller: controller.amountController,
           inputFormatters: [
@@ -105,15 +119,15 @@ class AddTransactionView extends GetView<AddTransactionController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () async {
-                  controller.addTransaction();
-                },
-                child: Text(
-                  "Add",
-                  style: Theme.of(context).textTheme.subtitle1,
-                ),
+            FloatingActionButton.extended(
+              onPressed: () async {
+                controller.addTransaction();
+              },
+              label: Text(
+                (controller.isAddIncome)
+                    ? "Add Transaction"
+                    : "Add Transaction",
+                style: Theme.of(context).textTheme.subtitle1,
               ),
             ),
           ],

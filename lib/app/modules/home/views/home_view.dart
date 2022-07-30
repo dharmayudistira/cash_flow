@@ -65,7 +65,7 @@ class HomeView extends GetView<HomeController> {
             height: 100,
             width: double.infinity,
             child: Card(
-              color: const Color(0xFF7DCE13),
+              color: Colors.greenAccent,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -82,7 +82,7 @@ class HomeView extends GetView<HomeController> {
                       controller.getAmountAsCurrency(amount),
                       style: Theme.of(context)
                           .textTheme
-                          .subtitle2
+                          .subtitle1
                           ?.copyWith(color: Colors.white),
                     );
                   }),
@@ -97,7 +97,7 @@ class HomeView extends GetView<HomeController> {
             height: 100,
             width: double.infinity,
             child: Card(
-              color: const Color(0xFFFF5D5D),
+              color: Colors.redAccent,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -114,7 +114,7 @@ class HomeView extends GetView<HomeController> {
                       controller.getAmountAsCurrency(amount),
                       style: Theme.of(context)
                           .textTheme
-                          .subtitle2
+                          .subtitle1
                           ?.copyWith(color: Colors.white),
                     );
                   }),
@@ -210,8 +210,8 @@ class HomeView extends GetView<HomeController> {
               trailing: const Icon(Icons.chevron_right),
             ),
             onTap: () {
-              // Get.toNamed(Routes.ADD_TRANSACTION, arguments: false)
-              //     ?.whenComplete(() => controller.refreshData());
+              Get.toNamed(Routes.DETAIL_CASH_FLOW, arguments: false)
+                  ?.whenComplete(() => controller.refreshData());
             },
           ),
         ),

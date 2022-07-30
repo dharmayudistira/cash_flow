@@ -16,7 +16,7 @@ void main() async {
       getPages: AppPages.routes,
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF0F1115),
+            seedColor: Colors.greenAccent,
           ),
           useMaterial3: true,
           textTheme: const TextTheme(
