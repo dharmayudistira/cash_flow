@@ -98,7 +98,7 @@ CREATE TABLE $tableTransaction (
     final db = await instance.database;
 
     final listTransactionMap = await db.query(
-      tableUser,
+      tableTransaction,
       columns: TransactionFields.transactionColumns,
       where: '${TransactionFields.userId} = ?',
       orderBy: '${TransactionFields.createdTime} ASC',

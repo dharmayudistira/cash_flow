@@ -19,18 +19,15 @@ class HomeController extends GetxController {
     await _getListTransaction();
   }
 
+  Future<void> refreshData() async {
+    await _getListTransaction();
+  }
+
   Future<void> _getListTransaction() async {
     final userId = currentUser.value?.id;
     listTransaction.value =
         await CashFlowDatabase.instance.readAllTransaction(userId!);
-  }
 
-  String getAmounAsCurrency(QueryType type) {
-    final amount = _getOverview(type);
-    return CurrencyFormatter().getRupiahFull(amount);
-  }
-
-  int _getOverview(QueryType type) {
     var income = 0;
     var expanse = 0;
     for (var element in listTransaction) {
@@ -44,14 +41,9 @@ class HomeController extends GetxController {
     totalAmount.value = income - expanse;
     totalIncome.value = income;
     totalExpanse.value = expanse;
+  }
 
-    switch (type) {
-      case QueryType.getTotalAmount:
-        return totalAmount.value;
-      case QueryType.getIncome:
-        return totalIncome.value;
-      case QueryType.getExpanse:
-        return totalExpanse.value;
-    }
+  String getAmountAsCurrency(int amount) {
+    return CurrencyFormatter().getRupiahFull(amount);
   }
 }

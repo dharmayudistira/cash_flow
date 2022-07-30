@@ -33,16 +33,7 @@ class LoginController extends GetxController {
     isLoginLoading.toggle();
     await Future.delayed(const Duration(seconds: 1));
 
-    if (username.isEmpty && password.isEmpty) {
-      isLoginLoading.toggle();
-      Get.snackbar(somethingWentWrong, loginAllInputAreRequired);
-    } else if (username.isEmpty) {
-      isLoginLoading.toggle();
-      Get.snackbar(somethingWentWrong, loginUsernameIsRequired);
-    } else if (password.isEmpty) {
-      isLoginLoading.toggle();
-      Get.snackbar(somethingWentWrong, loginPasswordIsRequired);
-    } else {
+    if(_validateInput(username, password)) {
       await _handleInputIfNotEmpty(username, password);
     }
   }
@@ -82,6 +73,24 @@ class LoginController extends GetxController {
       Get.offAllNamed(Routes.HOME);
     } else {
       isLoginLoading.toggle();
+    }
+  }
+
+  bool _validateInput(String username, String password) {
+    if (username.isEmpty && password.isEmpty) {
+      isLoginLoading.toggle();
+      Get.snackbar(somethingWentWrong, allInputAreRequired);
+      return false;
+    } else if (username.isEmpty) {
+      isLoginLoading.toggle();
+      Get.snackbar(somethingWentWrong, loginUsernameIsRequired);
+      return false;
+    } else if (password.isEmpty) {
+      isLoginLoading.toggle();
+      Get.snackbar(somethingWentWrong, loginPasswordIsRequired);
+      return false;
+    } else {
+      return true;
     }
   }
 }

@@ -31,8 +31,7 @@ class HomeView extends GetView<HomeController> {
           const SizedBox(height: 8),
           _buildGraphHome(),
           const SizedBox(height: 8),
-          _buildMenuHome(),
-          const SizedBox(height: 16),
+          _buildMenuHome(context),
         ],
       ),
     );
@@ -46,10 +45,13 @@ class HomeView extends GetView<HomeController> {
           "Hello, ${controller.currentUser.value?.name}!",
           style: Theme.of(context).textTheme.headline3,
         ),
-        Text(
-          "Your total amount is ${controller.getAmounAsCurrency(QueryType.getTotalAmount)}",
-          style: Theme.of(context).textTheme.subtitle2,
-        ),
+        Obx(() {
+          final amount = controller.totalAmount.value;
+          return Text(
+            "Your total amount is ${controller.getAmountAsCurrency(amount)}",
+            style: Theme.of(context).textTheme.subtitle2,
+          );
+        }),
       ],
     );
   }
@@ -74,13 +76,16 @@ class HomeView extends GetView<HomeController> {
                         .bodyText1
                         ?.copyWith(color: Colors.white),
                   ),
-                  Text(
-                    controller.getAmounAsCurrency(QueryType.getIncome),
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle2
-                        ?.copyWith(color: Colors.white),
-                  ),
+                  Obx(() {
+                    final amount = controller.totalIncome.value;
+                    return Text(
+                      controller.getAmountAsCurrency(amount),
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2
+                          ?.copyWith(color: Colors.white),
+                    );
+                  }),
                 ],
               ),
             ),
@@ -103,13 +108,16 @@ class HomeView extends GetView<HomeController> {
                         .bodyText1
                         ?.copyWith(color: Colors.white),
                   ),
-                  Text(
-                    controller.getAmounAsCurrency(QueryType.getExpanse),
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle2
-                        ?.copyWith(color: Colors.white),
-                  ),
+                  Obx(() {
+                    final amount = controller.totalExpanse.value;
+                    return Text(
+                      controller.getAmountAsCurrency(amount),
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2
+                          ?.copyWith(color: Colors.white),
+                    );
+                  }),
                 ],
               ),
             ),
@@ -126,13 +134,16 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildMenuHome() {
+  Widget _buildMenuHome(BuildContext context) {
     return Column(
       children: [
         Card(
           child: InkWell(
             child: ListTile(
-              title: const Text("Add Income"),
+              title: Text(
+                "Add Income",
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
               leading: Container(
                 height: 46,
                 width: 46,
@@ -147,10 +158,89 @@ class HomeView extends GetView<HomeController> {
               trailing: const Icon(Icons.chevron_right),
             ),
             onTap: () {
-              Get.toNamed(Routes.ADD_TRANSACTION, arguments: true);
+              Get.toNamed(Routes.ADD_TRANSACTION, arguments: true)
+                  ?.whenComplete(() => controller.refreshData());
             },
           ),
         ),
+        Card(
+          child: InkWell(
+            child: ListTile(
+              title: Text(
+                "Add Expanse",
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              leading: Container(
+                height: 46,
+                width: 46,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                alignment: Alignment.center,
+                child: const Icon(
+                  Icons.camera,
+                ),
+              ),
+              trailing: const Icon(Icons.chevron_right),
+            ),
+            onTap: () {
+              Get.toNamed(Routes.ADD_TRANSACTION, arguments: false)
+                  ?.whenComplete(() => controller.refreshData());
+            },
+          ),
+        ),
+        Card(
+          child: InkWell(
+            child: ListTile(
+              title: Text(
+                "Detail Cashflow",
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              leading: Container(
+                height: 46,
+                width: 46,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                alignment: Alignment.center,
+                child: const Icon(
+                  Icons.camera,
+                ),
+              ),
+              trailing: const Icon(Icons.chevron_right),
+            ),
+            onTap: () {
+              // Get.toNamed(Routes.ADD_TRANSACTION, arguments: false)
+              //     ?.whenComplete(() => controller.refreshData());
+            },
+          ),
+        ),
+        Card(
+          child: InkWell(
+            child: ListTile(
+              title: Text(
+                "Setting",
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              leading: Container(
+                height: 46,
+                width: 46,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                alignment: Alignment.center,
+                child: const Icon(
+                  Icons.camera,
+                ),
+              ),
+              trailing: const Icon(Icons.chevron_right),
+            ),
+            onTap: () {
+              // Get.toNamed(Routes.ADD_TRANSACTION, arguments: false)
+              //     ?.whenComplete(() => controller.refreshData());
+            },
+          ),
+        )
       ],
     );
   }
