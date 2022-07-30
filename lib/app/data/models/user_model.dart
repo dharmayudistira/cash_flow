@@ -1,18 +1,6 @@
-const String tableUser = 'table_users';
 
-class UserFields {
-  static const List<String> userColumns = [
-    id,
-    username,
-    password,
-    name,
-  ];
 
-  static const String id = '_id';
-  static const String username = 'username';
-  static const String password = 'password';
-  static const String name = 'name';
-}
+import 'package:cash_flow/app/data/constants/db_field_constants.dart';
 
 class UserModel {
   final int? id;
