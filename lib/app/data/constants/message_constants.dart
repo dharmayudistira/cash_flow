@@ -11,3 +11,6 @@ const String loginPasswordIsRequired = "Password is required";
 const String addTransactionAmountIsRequired = "Amount is required";
 const String addTransactionDateIsRequired = "Date is required";
 const String addTransactionNoteIsRequired = "Note is required";
+
+const String updateProfileNewPasswordSame =
+    "New password cannot be the same as old password";

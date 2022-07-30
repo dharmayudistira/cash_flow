@@ -1,7 +1,6 @@
 import '../../../data/constants/message_constants.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/currency_formatter.dart';
-import '../../../views/views/loading_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';

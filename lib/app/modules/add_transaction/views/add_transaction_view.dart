@@ -120,11 +120,19 @@ class AddTransactionView extends GetView<AddTransactionController> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: (controller.isAddIncome)
+                    ? Colors.greenAccent
+                    : Colors.redAccent,
+              ),
               onPressed: () async {
                 await controller.addTransaction();
               },
               child: Text(
                 (controller.isAddIncome) ? "Add Income" : "Add Expanse",
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
           ],

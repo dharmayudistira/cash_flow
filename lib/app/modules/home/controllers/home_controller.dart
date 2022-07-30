@@ -1,4 +1,3 @@
-import '../../../data/constants/query_type_enums.dart';
 import '../../../data/models/transaction_model.dart';
 import '../../../utils/currency_formatter.dart';
 

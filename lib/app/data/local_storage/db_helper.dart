@@ -52,7 +52,7 @@ CREATE TABLE $tableTransaction (
       const UserModel(
         username: "user",
         password: "user",
-        name: "Dharma",
+        name: "Dharma Yudistira Eka Putra",
       ).toJson(),
     );
   }
