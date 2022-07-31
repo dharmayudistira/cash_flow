@@ -104,14 +104,14 @@ class HomeView extends GetView<HomeController> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "Your total expanse",
+                    "Your total expense",
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1
                         ?.copyWith(color: Colors.white),
                   ),
                   Obx(() {
-                    final amount = controller.totalExpanse.value;
+                    final amount = controller.totalExpense.value;
                     return Text(
                       controller.getAmountAsCurrency(amount),
                       style: Theme.of(context)
@@ -144,7 +144,7 @@ class HomeView extends GetView<HomeController> {
                 width: 8,
               ),
               Text(
-                "Your cashflow charts",
+                "Your cashflow chart",
                 style: Theme.of(context).textTheme.subtitle2,
               ),
             ],
@@ -155,7 +155,7 @@ class HomeView extends GetView<HomeController> {
           Expanded(
             child: Obx(() {
               if (controller.listIncomeSum.isEmpty &&
-                  controller.listExpanseSum.isEmpty) {
+                  controller.listExpenseSum.isEmpty) {
                 return SizedBox(
                   width: double.infinity,
                   child: Column(
@@ -180,6 +180,7 @@ class HomeView extends GetView<HomeController> {
                 return SfCartesianChart(
                   tooltipBehavior: controller.tooltipBehavior,
                   legend: Legend(isVisible: true),
+                  trackballBehavior: controller.trackballBehavior,
                   primaryXAxis: DateTimeAxis(
                     intervalType: DateTimeIntervalType.days,
                     interval: 1,
@@ -204,8 +205,8 @@ class HomeView extends GetView<HomeController> {
                     ),
                     SplineSeries(
                       color: Colors.redAccent,
-                      name: 'Expanse',
-                      dataSource: controller.listExpanseSum,
+                      name: 'Expense',
+                      dataSource: controller.listExpenseSum,
                       xValueMapper: (ChartTransactionModel data, _) =>
                           data.date,
                       yValueMapper: (ChartTransactionModel data, _) =>
@@ -256,7 +257,7 @@ class HomeView extends GetView<HomeController> {
                   children: const [
                     Icon(Icons.trending_down),
                     SizedBox(height: 8),
-                    Text("Expanse"),
+                    Text("Expense"),
                   ],
                 ),
               ),

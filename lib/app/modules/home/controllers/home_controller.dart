@@ -11,14 +11,18 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   final TooltipBehavior tooltipBehavior = TooltipBehavior(enable: true);
+  final TrackballBehavior trackballBehavior = TrackballBehavior(
+    enable: true,
+    activationMode: ActivationMode.singleTap
+  );
 
   var currentUser = AuthPref().getCurrentUser().obs;
   var totalAmount = 0.obs;
   var totalIncome = 0.obs;
-  var totalExpanse = 0.obs;
+  var totalExpense = 0.obs;
   var listTransaction = <TransactionModel>[].obs;
   var listIncomeSum = <ChartTransactionModel>[].obs;
-  var listExpanseSum = <ChartTransactionModel>[].obs;
+  var listExpenseSum = <ChartTransactionModel>[].obs;
 
   @override
   void onInit() async {
@@ -36,26 +40,26 @@ class HomeController extends GetxController {
         await CashFlowDatabase.instance.readAllTransaction(userId!);
 
     var income = 0;
-    var expanse = 0;
+    var expense = 0;
     var incomeTransactions = <TransactionModel>[];
-    var expanseTransactions = <TransactionModel>[];
+    var expenseTransactions = <TransactionModel>[];
 
     for (var element in listTransaction) {
       if (element.isIncome) {
         income += element.amount;
         incomeTransactions.add(element);
       } else {
-        expanse += element.amount;
-        expanseTransactions.add(element);
+        expense += element.amount;
+        expenseTransactions.add(element);
       }
     }
 
-    totalAmount.value = income - expanse;
+    totalAmount.value = income - expense;
     totalIncome.value = income;
-    totalExpanse.value = expanse;
+    totalExpense.value = expense;
 
     listIncomeSum.value = _getSum(incomeTransactions, isIncome: true);
-    listExpanseSum.value = _getSum(expanseTransactions, isIncome: false);
+    listExpenseSum.value = _getSum(expenseTransactions, isIncome: false);
   }
 
   List<ChartTransactionModel> _getSum(
