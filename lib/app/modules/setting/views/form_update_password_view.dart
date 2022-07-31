@@ -47,7 +47,6 @@ class FormUpdatePasswordView extends GetView {
             ),
           ),
         ),
-        const SizedBox(height: 16),
       ],
     );
   }
