@@ -1,4 +1,4 @@
-import 'package:cash_flow/app/modules/setting/views/appbar_view.dart';
+import 'package:cash_flow/app/views/views/appbar_view.dart';
 import 'package:cash_flow/app/modules/setting/views/developer_info_view.dart';
 import 'package:cash_flow/app/modules/setting/views/form_update_password_view.dart';
 import 'package:cash_flow/app/modules/setting/views/input_button_view.dart';
@@ -36,7 +36,7 @@ class SettingView extends GetView<SettingController> {
             Expanded(
               child: Column(
                 children: [
-                  const AppbarView(),
+                  const AppbarView(title: "Setting",),
                   const SizedBox(height: 32),
                   FormUpdatePasswordView(controller: controller),
                   InputButtonView(controller: controller),
