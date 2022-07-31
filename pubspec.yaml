@@ -8,6 +8,7 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   currency_text_input_formatter: ^2.1.7
+  fl_chart: ^0.55.0
   flutter:
     sdk: flutter
   flutter_svg: ^1.1.1+1
@@ -16,6 +17,7 @@ dependencies:
   intl: ^0.17.0
   path: ^1.8.1
   sqflite: ^2.0.3
+  syncfusion_flutter_charts: ^20.2.40
 
 dev_dependencies:
   flutter_lints: 2.0.1

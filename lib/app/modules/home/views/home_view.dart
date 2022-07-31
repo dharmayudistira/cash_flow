@@ -1,3 +1,8 @@
+import '../../../data/constants/message_constants.dart';
+import '../../../data/models/chart_transaction_model.dart';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+
 import '../../../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -20,19 +25,17 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _buildBodyHome(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildGreetingHome(context),
-          const SizedBox(height: 16),
-          _buildOverviewHome(context),
-          const SizedBox(height: 8),
-          _buildGraphHome(),
-          const SizedBox(height: 8),
-          _buildMenuHome(context),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildGreetingHome(context),
+        const SizedBox(height: 16),
+        _buildOverviewHome(context),
+        const SizedBox(height: 8),
+        _buildMenuHome(context),
+        const SizedBox(height: 16),
+        _buildGraphHome(context),
+      ],
     );
   }
 
@@ -126,93 +129,177 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildGraphHome() {
-    return const Placeholder(
-      fallbackHeight: 300,
-      fallbackWidth: double.infinity,
+  Widget _buildGraphHome(BuildContext context) {
+    return Expanded(
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 6,
+                height: 16,
+                color: Colors.greenAccent,
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Text(
+                "Your cashflow charts",
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Expanded(
+            child: Obx(() {
+              if (controller.listIncomeSum.isEmpty &&
+                  controller.listExpanseSum.isEmpty) {
+                return SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.data_exploration,
+                        color: Colors.greenAccent,
+                        size: 64,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        emptyListTransaction,
+                        style: Theme.of(context).textTheme.subtitle1,
+                      ),
+                    ],
+                  ),
+                );
+              } else {
+                return SfCartesianChart(
+                  tooltipBehavior: controller.tooltipBehavior,
+                  legend: Legend(isVisible: true),
+                  primaryXAxis: DateTimeAxis(
+                    intervalType: DateTimeIntervalType.days,
+                    interval: 1,
+                    axisLine: const AxisLine(width: 1),
+                    majorGridLines: const MajorGridLines(width: 0),
+                  ),
+                  primaryYAxis: NumericAxis(
+                    numberFormat:
+                        NumberFormat.compactSimpleCurrency(locale: 'id'),
+                    axisLine: const AxisLine(width: 1),
+                    majorGridLines: const MajorGridLines(width: 0),
+                  ),
+                  series: <SplineSeries<ChartTransactionModel, DateTime>>[
+                    SplineSeries(
+                      color: Colors.greenAccent,
+                      name: 'Income',
+                      dataSource: controller.listIncomeSum,
+                      xValueMapper: (ChartTransactionModel data, _) =>
+                          data.date,
+                      yValueMapper: (ChartTransactionModel data, _) =>
+                          data.amount,
+                    ),
+                    SplineSeries(
+                      color: Colors.redAccent,
+                      name: 'Expanse',
+                      dataSource: controller.listExpanseSum,
+                      xValueMapper: (ChartTransactionModel data, _) =>
+                          data.date,
+                      yValueMapper: (ChartTransactionModel data, _) =>
+                          data.amount,
+                    ),
+                  ],
+                );
+              }
+            }),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildMenuHome(BuildContext context) {
-    return Column(
-      children: [
-        Card(
-          child: InkWell(
-            child: ListTile(
-              title: Text(
-                "Add Income",
-                style: Theme.of(context).textTheme.subtitle1,
+    return SizedBox(
+      height: 100,
+      child: Row(
+        children: [
+          Expanded(
+            child: Card(
+              child: InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.ADD_TRANSACTION, arguments: true)
+                      ?.whenComplete(() => controller.refreshData());
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.trending_up),
+                    SizedBox(height: 8),
+                    Text("Income"),
+                  ],
+                ),
               ),
-              leading: const Icon(
-                Icons.trending_up,
-                size: 28,
-              ),
-              trailing: const Icon(Icons.chevron_right),
             ),
-            onTap: () {
-              Get.toNamed(Routes.ADD_TRANSACTION, arguments: true)
-                  ?.whenComplete(() => controller.refreshData());
-            },
           ),
-        ),
-        Card(
-          child: InkWell(
-            child: ListTile(
-              title: Text(
-                "Add Expanse",
-                style: Theme.of(context).textTheme.subtitle1,
+          Expanded(
+            child: Card(
+              child: InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.ADD_TRANSACTION, arguments: false)
+                      ?.whenComplete(() => controller.refreshData());
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.trending_down),
+                    SizedBox(height: 8),
+                    Text("Expanse"),
+                  ],
+                ),
               ),
-              leading: const Icon(
-                Icons.trending_down,
-                size: 28,
-              ),
-              trailing: const Icon(Icons.chevron_right),
             ),
-            onTap: () {
-              Get.toNamed(Routes.ADD_TRANSACTION, arguments: false)
-                  ?.whenComplete(() => controller.refreshData());
-            },
           ),
-        ),
-        Card(
-          child: InkWell(
-            child: ListTile(
-              title: Text(
-                "Detail Cashflow",
-                style: Theme.of(context).textTheme.subtitle1,
+          Expanded(
+            child: Card(
+              child: InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.DETAIL_CASH_FLOW, arguments: true)
+                      ?.whenComplete(() => controller.refreshData());
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.assessment),
+                    SizedBox(height: 8),
+                    Text("Cashflow"),
+                  ],
+                ),
               ),
-              leading: const Icon(
-                Icons.assessment,
-                size: 28,
-              ),
-              trailing: const Icon(Icons.chevron_right),
             ),
-            onTap: () {
-              Get.toNamed(Routes.DETAIL_CASH_FLOW, arguments: false)
-                  ?.whenComplete(() => controller.refreshData());
-            },
           ),
-        ),
-        Card(
-          child: InkWell(
-            child: ListTile(
-              title: Text(
-                "Setting",
-                style: Theme.of(context).textTheme.subtitle1,
+          Expanded(
+            child: Card(
+              child: InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.SETTING, arguments: true)
+                      ?.whenComplete(() => controller.refreshData());
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.info),
+                    SizedBox(height: 8),
+                    Text("Setting"),
+                  ],
+                ),
               ),
-              leading: const Icon(
-                Icons.info_outline,
-                size: 28,
-              ),
-              trailing: const Icon(Icons.chevron_right),
             ),
-            onTap: () {
-              Get.toNamed(Routes.SETTING, arguments: false)
-                  ?.whenComplete(() => controller.refreshData());
-            },
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }
