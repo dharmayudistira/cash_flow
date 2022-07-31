@@ -1,7 +1,7 @@
-import 'package:cash_flow/app/modules/home/views/graph_cashflow_view.dart';
-import 'package:cash_flow/app/modules/home/views/greeting_view.dart';
-import 'package:cash_flow/app/modules/home/views/menu_view.dart';
-import 'package:cash_flow/app/modules/home/views/overview_cashflow_view.dart';
+import 'graph_cashflow_view.dart';
+import 'greeting_view.dart';
+import 'menu_view.dart';
+import 'overview_cashflow_view.dart';
 
 import '../../../data/constants/message_constants.dart';
 import '../../../data/models/chart_transaction_model.dart';

@@ -1,4 +1,4 @@
-import 'package:cash_flow/app/modules/login/views/background_view.dart';
+import 'background_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

@@ -1,4 +1,5 @@
-import 'package:cash_flow/app/modules/home/controllers/home_controller.dart';
+import '../controllers/home_controller.dart';
+import '../../../views/views/menu_item_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -19,78 +20,37 @@ class MenuView extends GetView {
       height: 100,
       child: Row(
         children: [
-          Expanded(
-            child: Card(
-              child: InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.ADD_TRANSACTION, arguments: true)
-                      ?.whenComplete(() => controller.refreshData());
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.trending_up),
-                    SizedBox(height: 8),
-                    Text("Income"),
-                  ],
-                ),
-              ),
-            ),
+          MenuItemView(
+            navigate: () {
+              Get.toNamed(Routes.ADD_TRANSACTION, arguments: true)
+                  ?.whenComplete(() => controller.refreshData());
+            },
+            title: "Income",
+            icon: Icons.trending_up,
           ),
-          Expanded(
-            child: Card(
-              child: InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.ADD_TRANSACTION, arguments: false)
-                      ?.whenComplete(() => controller.refreshData());
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.trending_down),
-                    SizedBox(height: 8),
-                    Text("Expense"),
-                  ],
-                ),
-              ),
-            ),
+          MenuItemView(
+            navigate: () {
+              Get.toNamed(Routes.ADD_TRANSACTION, arguments: false)
+                  ?.whenComplete(() => controller.refreshData());
+            },
+            title: "Expense",
+            icon: Icons.trending_down,
           ),
-          Expanded(
-            child: Card(
-              child: InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.DETAIL_CASH_FLOW, arguments: true)
-                      ?.whenComplete(() => controller.refreshData());
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.assessment),
-                    SizedBox(height: 8),
-                    Text("Cashflow"),
-                  ],
-                ),
-              ),
-            ),
+          MenuItemView(
+            navigate: () {
+              Get.toNamed(Routes.DETAIL_CASH_FLOW)
+                  ?.whenComplete(() => controller.refreshData());
+            },
+            title: "Cashflow",
+            icon: Icons.assessment,
           ),
-          Expanded(
-            child: Card(
-              child: InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.SETTING, arguments: true)
-                      ?.whenComplete(() => controller.refreshData());
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.info),
-                    SizedBox(height: 8),
-                    Text("Setting"),
-                  ],
-                ),
-              ),
-            ),
-          ),
+          MenuItemView(
+              navigate: () {
+                Get.toNamed(Routes.SETTING)
+                    ?.whenComplete(() => controller.refreshData());
+              },
+              title: "Setting",
+              icon: Icons.info),
         ],
       ),
     );

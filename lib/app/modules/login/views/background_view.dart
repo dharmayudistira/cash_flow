@@ -1,5 +1,5 @@
-import 'package:cash_flow/app/modules/login/controllers/login_controller.dart';
-import 'package:cash_flow/app/modules/login/views/logo_app_view.dart';
+import '../controllers/login_controller.dart';
+import 'logo_app_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

@@ -1,4 +1,5 @@
-import 'package:cash_flow/app/modules/home/controllers/home_controller.dart';
+import '../controllers/home_controller.dart';
+import '../../../views/views/empty_transaction_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ import '../../../data/models/chart_transaction_model.dart';
 class GraphCashflowView extends GetView {
   @override
   final HomeController controller;
-  
+
   const GraphCashflowView({
     Key? key,
     required this.controller,
@@ -44,26 +45,7 @@ class GraphCashflowView extends GetView {
             child: Obx(() {
               if (controller.listIncomeSum.isEmpty &&
                   controller.listExpenseSum.isEmpty) {
-                return SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.data_exploration,
-                        color: Colors.greenAccent,
-                        size: 64,
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        emptyListTransaction,
-                        style: Theme.of(context).textTheme.subtitle1,
-                      ),
-                    ],
-                  ),
-                );
+                return const EmptyTransactionView();
               } else {
                 return SfCartesianChart(
                   tooltipBehavior: controller.tooltipBehavior,

@@ -1,7 +1,7 @@
-import 'package:cash_flow/app/modules/setting/controllers/setting_controller.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+
+import '../controllers/setting_controller.dart';
 
 class DeveloperInfoView extends GetView {
   @override

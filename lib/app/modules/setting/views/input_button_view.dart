@@ -1,5 +1,5 @@
-import 'package:cash_flow/app/modules/setting/controllers/setting_controller.dart';
-import 'package:cash_flow/app/routes/app_pages.dart';
+import '../controllers/setting_controller.dart';
+import '../../../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

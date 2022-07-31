@@ -1,5 +1,5 @@
-import 'package:cash_flow/app/modules/add_transaction/views/input_transaction_view.dart';
-import 'package:cash_flow/app/views/views/appbar_view.dart';
+import 'input_transaction_view.dart';
+import '../../../views/views/appbar_view.dart';
 
 import '../../../views/views/loading_view.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';

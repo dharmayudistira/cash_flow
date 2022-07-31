@@ -1,6 +1,6 @@
-import 'package:cash_flow/app/modules/detail_cash_flow/views/cashflow_list_view.dart';
-import 'package:cash_flow/app/views/views/appbar_view.dart';
-import 'package:cash_flow/app/views/views/empty_transaction_view.dart';
+import 'cashflow_list_view.dart';
+import '../../../views/views/appbar_view.dart';
+import '../../../views/views/empty_transaction_view.dart';
 
 import '../../../data/constants/message_constants.dart';
 import '../../../routes/app_pages.dart';

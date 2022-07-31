@@ -1,4 +1,4 @@
-import 'package:cash_flow/app/modules/add_transaction/controllers/add_transaction_controller.dart';
+import '../controllers/add_transaction_controller.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 

@@ -1,9 +1,10 @@
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+
 import '../constants/db_field_constants.dart';
 import '../constants/message_constants.dart';
 import '../models/transaction_model.dart';
 import '../models/user_model.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 
 class CashFlowDatabase {
   static final CashFlowDatabase instance = CashFlowDatabase._init();

@@ -1,7 +1,7 @@
-import 'package:cash_flow/app/views/views/appbar_view.dart';
-import 'package:cash_flow/app/modules/setting/views/developer_info_view.dart';
-import 'package:cash_flow/app/modules/setting/views/form_update_password_view.dart';
-import 'package:cash_flow/app/modules/setting/views/input_button_view.dart';
+import '../../../views/views/appbar_view.dart';
+import 'developer_info_view.dart';
+import 'form_update_password_view.dart';
+import 'input_button_view.dart';
 
 import '../../../views/views/loading_view.dart';
 import 'package:flutter/material.dart';
