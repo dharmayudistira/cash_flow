@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class BackgroundView extends GetView {
+  @override
   final LoginController controller;
   const BackgroundView({
     Key? key,

@@ -1,3 +1,5 @@
+import '../../../views/views/text_form_view.dart';
+
 import '../controllers/setting_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -15,38 +17,30 @@ class FormUpdatePasswordView extends GetView {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextField(
-          controller: controller.oldPasswordController,
-          readOnly: true,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-            ),
-            labelText: "Current Password",
-            filled: true,
-            labelStyle: TextStyle(
-              fontFamily: 'Decker',
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        Obx(() {
+          return TextFormView(
+            editingController: controller.oldPasswordController,
+            label: "Old Password",
+            isReadOnly: true,
+            isObscured: true,
+            obscureState: controller.obscureStateOldPassword.value,
+            onSuffixTap: () {
+              controller.obscureStateOldPassword.toggle();
+            },
+          );
+        }),
         const SizedBox(height: 8),
-        TextField(
-          controller: controller.newPasswordController,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-            ),
-            labelText: "New Password",
-            filled: true,
-            labelStyle: TextStyle(
-              fontFamily: 'Decker',
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        Obx(() {
+          return TextFormView(
+            editingController: controller.newPasswordController,
+            label: "New Password",
+            isObscured: true,
+            obscureState: controller.obscureStateNewPassword.value,
+            onSuffixTap: () {
+              controller.obscureStateNewPassword.toggle();
+            },
+          );
+        }),
       ],
     );
   }

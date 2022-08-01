@@ -1,3 +1,5 @@
+import '../../../views/views/text_form_view.dart';
+
 import '../controllers/add_transaction_controller.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
@@ -16,32 +18,22 @@ class InputTransactionView extends GetView {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextField(
-          controller: controller.amountController,
-          inputFormatters: [
+        TextFormView(
+          editingController: controller.amountController,
+          inputFormatter: [
             CurrencyTextInputFormatter(
               locale: 'id',
               symbol: 'Rp. ',
               decimalDigits: 0,
             ),
           ],
-          keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-            ),
-            labelText: "Amount",
-            filled: true,
-            labelStyle: TextStyle(
-              fontFamily: 'Decker',
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          inputType: TextInputType.number,
+          label: "Amount",
         ),
         const SizedBox(height: 8),
-        TextField(
-          controller: controller.dateController,
+        TextFormView(
+          editingController: controller.dateController,
+          label: "Date",
           onTap: () async {
             final selectedDate = await showDatePicker(
               context: context,
@@ -51,36 +43,12 @@ class InputTransactionView extends GetView {
             );
             controller.setSelectedDate(selectedDate);
           },
-          readOnly: true,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-            ),
-            labelText: "Date",
-            suffixIcon: Icon(Icons.date_range),
-            filled: true,
-            labelStyle: TextStyle(
-              fontFamily: 'Decker',
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          isReadOnly: true,
         ),
         const SizedBox(height: 8),
-        TextField(
-          controller: controller.noteController,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-            ),
-            labelText: "Note",
-            filled: true,
-            labelStyle: TextStyle(
-              fontFamily: 'Decker',
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+        TextFormView(
+          editingController: controller.noteController,
+          label: "Note",
         ),
       ],
     );

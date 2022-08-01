@@ -10,6 +10,8 @@ class SettingController extends GetxController {
   final currentUser = AuthPref().getCurrentUser().obs;
 
   var isUpdateLogin = false.obs;
+  var obscureStateOldPassword = true.obs;
+  var obscureStateNewPassword = true.obs;
 
   late TextEditingController oldPasswordController;
   late TextEditingController newPasswordController;

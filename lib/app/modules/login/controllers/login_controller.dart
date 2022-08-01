@@ -9,6 +9,7 @@ import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
   var isLoginLoading = false.obs;
+  var obscureStatePassword = true.obs;
 
   late TextEditingController usernameController;
   late TextEditingController passwordController;
@@ -33,7 +34,7 @@ class LoginController extends GetxController {
     isLoginLoading.toggle();
     await Future.delayed(const Duration(seconds: 1));
 
-    if(_validateInput(username, password)) {
+    if (_validateInput(username, password)) {
       await _handleInputIfNotEmpty(username, password);
     }
   }

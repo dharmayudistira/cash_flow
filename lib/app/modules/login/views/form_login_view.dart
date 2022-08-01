@@ -17,7 +17,11 @@ class FormLoginView extends GetView {
       children: [
         Card(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.only(
+              left: 16,
+              top: 16,
+              right: 16,
+            ),
             child: Column(
               children: [
                 TextField(
@@ -34,19 +38,27 @@ class FormLoginView extends GetView {
                   controller: controller.usernameController,
                 ),
                 const Divider(),
-                TextField(
-                  cursorColor: Theme.of(context).primaryColor,
-                  style: Theme.of(context).textTheme.bodyText1,
-                  decoration: InputDecoration(
-                    hintText: "Password",
-                    border: InputBorder.none,
-                    hintStyle: Theme.of(context).textTheme.bodyText1,
-                    icon: const Icon(
-                      Icons.lock,
+                Obx(() {
+                  return TextField(
+                    obscureText: controller.obscureStatePassword.value,
+                    obscuringCharacter: '*',
+                    cursorColor: Theme.of(context).primaryColor,
+                    style: Theme.of(context).textTheme.bodyText1,
+                    decoration: InputDecoration(
+                      suffix: getSuffixIcon(),
+                      hintText: "Password",
+                      border: InputBorder.none,
+                      hintStyle: Theme.of(context).textTheme.bodyText1,
+                      icon: const Icon(
+                        Icons.lock,
+                      ),
+                      contentPadding: const EdgeInsets.only(
+                        bottom: 25 / 2,
+                      ),
                     ),
-                  ),
-                  controller: controller.passwordController,
-                ),
+                    controller: controller.passwordController,
+                  );
+                }),
               ],
             ),
           ),
@@ -74,4 +86,17 @@ class FormLoginView extends GetView {
       ],
     );
   }
+
+  Widget? getSuffixIcon() => IconButton(
+        splashRadius: 1,
+        iconSize: 20,
+        onPressed: () {
+          controller.obscureStatePassword.toggle();
+        },
+        icon: (controller.obscureStatePassword.value)
+            ? const Icon(
+                Icons.visibility_off,
+              )
+            : const Icon(Icons.visibility),
+      );
 }

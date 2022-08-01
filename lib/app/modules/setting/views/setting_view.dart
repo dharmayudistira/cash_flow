@@ -36,9 +36,13 @@ class SettingView extends GetView<SettingController> {
             Expanded(
               child: Column(
                 children: [
-                  const AppbarView(title: "Setting",),
+                  const AppbarView(
+                    title: "Setting",
+                  ),
                   const SizedBox(height: 32),
-                  FormUpdatePasswordView(controller: controller),
+                  FormUpdatePasswordView(
+                    controller: controller,
+                  ),
                   const SizedBox(height: 16),
                   InputButtonView(controller: controller),
                 ],

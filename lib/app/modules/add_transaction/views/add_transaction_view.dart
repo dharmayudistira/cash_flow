@@ -2,7 +2,6 @@ import 'input_transaction_view.dart';
 import '../../../views/views/appbar_view.dart';
 
 import '../../../views/views/loading_view.dart';
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
