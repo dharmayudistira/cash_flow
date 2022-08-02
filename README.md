@@ -1,16 +1,16 @@
-# cash_flow
+# Cashflow App
+Aplikasi ini tentang manajemen keuangan untuk mencatat pemasukan keuangan, pengeluaran keuangan, dan riwayat keuangan.
 
-A new Flutter project.
+## Tech stack
+- Flutter
+- Getx
+- Sqflite
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+| Light Mode | Dark Mode |
+|---|---|
+| ![](assets/login_light.png) | ![](assets/login_dark.png) |
+| ![](assets/home_light.png) | ![](assets/home_dark.png) |
+| ![](assets/add_light.png) | ![](assets/add_dark.png) |
+| ![](assets/cashflow_light.png) | ![](assets/cashflow_dark.png) |
+| ![](assets/setting_light.png) | ![](assets/setting_dark.png) |
