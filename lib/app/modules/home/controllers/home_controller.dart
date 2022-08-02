@@ -11,10 +11,8 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   final TooltipBehavior tooltipBehavior = TooltipBehavior(enable: true);
-  final TrackballBehavior trackballBehavior = TrackballBehavior(
-    enable: true,
-    activationMode: ActivationMode.singleTap
-  );
+  final TrackballBehavior trackballBehavior =
+      TrackballBehavior(enable: true, activationMode: ActivationMode.singleTap);
 
   var currentUser = AuthPref().getCurrentUser().obs;
   var totalAmount = 0.obs;
@@ -43,6 +41,11 @@ class HomeController extends GetxController {
     var expense = 0;
     var incomeTransactions = <TransactionModel>[];
     var expenseTransactions = <TransactionModel>[];
+
+    final currentMonth = DateTime.now().month;
+    listTransaction.value = listTransaction
+        .where((item) => item.createdTime.month == currentMonth)
+        .toList();
 
     for (var element in listTransaction) {
       if (element.isIncome) {

@@ -24,7 +24,12 @@ class InputButtonView extends GetView {
             onPressed: () async {
               await controller.updateUser();
             },
-            child: const Text("Save Password"),
+            child: const Text(
+              "Save Password",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
         SizedBox(

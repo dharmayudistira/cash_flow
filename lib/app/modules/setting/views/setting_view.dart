@@ -36,9 +36,15 @@ class SettingView extends GetView<SettingController> {
             Expanded(
               child: Column(
                 children: [
-                  const AppbarView(
-                    title: "Setting",
-                  ),
+                  Obx(() {
+                    return AppbarView(
+                      title: "Setting",
+                      darkModeOnTap: () {
+                        controller.setTheme();
+                      },
+                      darkModeState: controller.isDarkModeState.value,
+                    );
+                  }),
                   const SizedBox(height: 32),
                   FormUpdatePasswordView(
                     controller: controller,

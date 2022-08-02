@@ -1,6 +1,7 @@
+import 'package:get_storage/get_storage.dart';
+
 import '../constants/pref_constants.dart';
 import '../models/user_model.dart';
-import 'package:get_storage/get_storage.dart';
 
 class AuthPref {
   final _authPref = GetStorage();
@@ -25,6 +26,14 @@ class AuthPref {
     } else {
       return null;
     }
+  }
+
+  void setDarkMode(bool state) {
+    _authPref.write(keyDarkMode, state);
+  }
+
+  bool getDarkModeState() {
+    return _authPref.read(keyDarkMode) ?? false;
   }
 
   void logout() {

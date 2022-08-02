@@ -1,3 +1,5 @@
+import 'app/data/local_storage/auth_pref.dart';
+import 'themes_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -15,42 +17,9 @@ void main() async {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.greenAccent,
-        ),
-        useMaterial3: true,
-        textTheme: const TextTheme(
-          headline1: TextStyle(
-            fontFamily: 'Decker',
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-          headline2: TextStyle(
-            fontFamily: 'Decker',
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-          headline3: TextStyle(
-            fontFamily: 'Decker',
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-          subtitle2: TextStyle(
-            fontFamily: 'Decker',
-            fontSize: 16,
-            color: Colors.black87,
-          ),
-          bodyText1: TextStyle(
-            fontFamily: 'Decker',
-            fontSize: 14,
-            color: Colors.black45,
-          ),
-        ),
-      ),
+      theme: ThemesApp.lightMode,
+      darkTheme: ThemesApp.darkMode,
+      themeMode: (AuthPref().getDarkModeState()) ? ThemeMode.dark : ThemeMode.light,
     ),
   );
 }

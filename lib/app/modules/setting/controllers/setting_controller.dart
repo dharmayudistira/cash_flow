@@ -1,15 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '../../../data/constants/message_constants.dart';
 import '../../../data/local_storage/auth_pref.dart';
 import '../../../data/local_storage/db_helper.dart';
 import '../../../data/models/user_model.dart';
 import '../../../routes/app_pages.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class SettingController extends GetxController {
   final currentUser = AuthPref().getCurrentUser().obs;
 
   var isUpdateLogin = false.obs;
+  var isDarkModeState = false.obs;
   var obscureStateOldPassword = true.obs;
   var obscureStateNewPassword = true.obs;
 
@@ -84,6 +86,13 @@ class SettingController extends GetxController {
     } else {
       return true;
     }
+  }
+
+  void setTheme() {
+    AuthPref().setDarkMode(isDarkModeState.toggle().value);
+    Get.changeThemeMode(
+      (isDarkModeState.value) ? ThemeMode.dark : ThemeMode.light,
+    );
   }
 
   Future<void> logout() async {

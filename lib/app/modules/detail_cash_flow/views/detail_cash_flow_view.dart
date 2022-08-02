@@ -1,12 +1,11 @@
-import 'cashflow_list_view.dart';
-import '../../../views/views/appbar_view.dart';
-import '../../../views/views/empty_transaction_view.dart';
-
-import '../../../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
+import '../../../views/views/appbar_view.dart';
+import '../../../views/views/empty_transaction_view.dart';
 import '../controllers/detail_cash_flow_controller.dart';
+import 'cashflow_list_view.dart';
 
 class DetailCashFlowView extends GetView<DetailCashFlowController> {
   const DetailCashFlowView({Key? key}) : super(key: key);

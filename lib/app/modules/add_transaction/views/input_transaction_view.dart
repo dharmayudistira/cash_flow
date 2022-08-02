@@ -1,10 +1,9 @@
-import '../../../views/views/text_form_view.dart';
-
-import '../controllers/add_transaction_controller.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+
+import '../../../views/views/text_form_view.dart';
+import '../controllers/add_transaction_controller.dart';
 
 class InputTransactionView extends GetView {
   @override
@@ -35,13 +34,12 @@ class InputTransactionView extends GetView {
           editingController: controller.dateController,
           label: "Date",
           onTap: () async {
-            final selectedDate = await showDatePicker(
+            await showDatePicker(
               context: context,
               initialDate: DateTime.now(),
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2023),
-            );
-            controller.setSelectedDate(selectedDate);
+              firstDate: DateTime(DateTime.now().year - 5),
+              lastDate: DateTime(DateTime.now().year + 2),
+            ).then((selectedDate) => controller.setSelectedDate(selectedDate));
           },
           isReadOnly: true,
         ),
